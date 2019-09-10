@@ -2,13 +2,19 @@ package aa
 
 import "reflect"
 
-type Slice struct {
+type slice struct {
 	any
 }
 
-var _ Array = new(Slice)
+var _ Array = new(slice)
 
-func (s Slice) Get(i int, target any) error {
+func Slice(s any) *slice {
+	return &slice{
+		any: s,
+	}
+}
+
+func (s slice) Get(i int, target any) error {
 	v := reflect.ValueOf(s.any)
 	if i >= v.Len() {
 		return ErrOutOfRange
@@ -19,7 +25,7 @@ func (s Slice) Get(i int, target any) error {
 	return nil
 }
 
-func (s *Slice) Set(i int, value any) error {
+func (s *slice) Set(i int, value any) error {
 	v := reflect.ValueOf(s.any)
 	if i >= v.Len() {
 		newArray := reflect.MakeSlice(v.Type(), i+1, i+1)

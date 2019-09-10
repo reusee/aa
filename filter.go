@@ -1,6 +1,8 @@
 package aa
 
-import "reflect"
+import (
+	"reflect"
+)
 
 func Filter(upstream Array, fn any) *filter {
 	return &filter{
@@ -57,5 +59,5 @@ start:
 }
 
 func (f *filter) Set(i int, value any) error {
-	return ErrNotSupported
+	return f.upstream.Set(i, value)
 }
