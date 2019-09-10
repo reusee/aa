@@ -14,6 +14,8 @@ type Files struct {
 	err        error
 }
 
+var _ Array = new(Files)
+
 type File struct {
 	Dir string
 	os.FileInfo
