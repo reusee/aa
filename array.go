@@ -9,4 +9,7 @@ type Array interface {
 
 type any = interface{}
 
-var ErrOutOfRange = errors.New("out of range")
+var (
+	ErrOutOfRange   = errors.New("out of range")
+	ErrNotSupported = errors.New("not supported")
+)
